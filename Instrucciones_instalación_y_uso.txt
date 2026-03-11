@@ -1,0 +1,75 @@
+Este script esta pensado para que se ejecute en Windows 11, con Miniconda o Anaconda, en Python. El transcriptor se abrirá en una ventana del navegador pero se ejecutará en local. La única cuestión que requiere conexión a internet es la diarización del audio. 
+
+Hay dos modelos en ejecución en este código: WhisperX y Pyannote.
+
+El token de Hugging Face en el código no afecta la privacidad de tus audios ni de tus transcripciones porque su función es de autenticación y descarga con el modelo de diarización, no de transferencia de datos de usuario.
+
+Es un requisito de licencia para el software específico del modelo de diarización (pyannote/speaker-diarization). El token actúa como una clave personal para demostrar que eres un usuario registrado que ha aceptado los términos de uso del modelo de Pyannote (se estará usando el mio, puede usarse el de otro usuario).
+
+El token de Hugging Face solo te da permiso para obtener la herramienta de análisis (el modelo), pero la herramienta realiza el trabajo en el interior de tu ordenador, asegurando que ningún dato de audio ni transcripción personal sale a internet.
+
+En todo caso, el código en Python puede modificarse a futuro para codificar los datos que salgan de los modelos.
+
+Guía:
+1. Al descargar la carpeta, deberás descomprimir los archivos. Una vez dentro de la carpeta descomprimida instala Miniconda con el archivo Miniconda3-latest-Windows-x86_64.exe. Este archivo se encuentra dentro de la sub-carpeta 1. Instalar programas, tal cual te aparezca la configuración (solo darle "OK" y "NEXT" a todo).
+2. Selecciona la carpeta "Transcriptor Local", dale click derecho y copia la ruta de acceso.
+3. Una vez instalada Miniconda, busca en el menú de Inicio de Windows "Anaconda prompt", "Conda prompt" o "Miniconda prompt" para abrir este terminal.
+4. Introduce el siguiente comando en la terminal: escribe "cd" y copia y pega la ruta de acceso de la carpeta "Transcriptor Local" con click derecho (Ejemplo: cd "C:\Users\Usuario1\Desktop\Transcriptor Local").
+5. Una vez en dicha carpeta dentro del terminal (deberá poner algo similar a "(base) C:\Users\Usuario1\Desktop\Transcriptor Local"), copia y pega el siguiente comando: conda env create -f env_anaconda_whisperx.yaml (decir que sí a los términos de servicio de miniconda si pregunta).
+6. Este proceso tardará varios minutos (ya que está descargando PyTorch y otros modelos grandes). Cuando pregunte "Proceed ([y]/n)?", escribe "y" y presiona Enter.
+7. Una vez terminada la instalación, debes entrar al entorno creado. Introduce el siguiente comando en el terminal: conda activate whisperx
+
+Paso 8 si ffmpeg no funciona:
+[8.1 Por si acaso la herramienta FFmpeg (que lee y reconoce los archivos de audio) no se abre bien, instala en el entorno esta librería. Introduce en la terminal el siguiente comando: conda install -c conda-forge ffmpeg -y
+8.2 Si tampoco funciona la página en la web (Error Windows 32: No se encuentra el archivo...), entra en la carpeta "Transcriptor Local", busca la subcarpeta llamada "ffmpeg-2026-02-18-git-52b676bb29-full_build" y entra después en la subcarpeta "bin".
+Asegúrate de que dentro de bin existan tres archivos (ffmpeg.exe,ffplay.exe y ffprobe.exe), y copia la ruta completa de esa subcarpeta bin. Una vez hecho esto, pulsa la tecla Windows, escribe "Variables de entorno" y selecciona "Editar las variables de entorno del sistema". En la lista "Variables del sistema", busca la que se llama Path y hazle doble clic, haz clic en Nuevo, pega la ruta que copiaste y pulsa Aceptar en todas las ventanas. Reinicia el ordenador]
+
+
+9. Si se ha hecho bien, el nombre (whisperx) aparece al inicio de la línea de comandos. Ya está listo. Por último, introduce en la terminal: python app_transcriptor.py
+10. Empezara a ejecutarse el código y el programa cargará los modelos. Si se está ejecutando con "cuda" será más rápido pero también está pensado para funcionar con la "cpu". Sin embargo, es recomendable que ante audios muy grandes se cierren los demás programas. 
+
+Inmediatamente después, el navegador predeterminado (Google Chrome, Firefox, Edge, Safari, etc.) se abrirá automáticamente con la interfaz de la aplicación. Se podrá seleccionar los audios a transcribir y diarizar, en caso de error, es recomendable que si es un audio largo se corte en trozos más pequeños y manejables.
+
+Suele tardar el triple de la duración del audio a transcribir (p.ej. alrededor de 1h de audio tardará 3h).
+
+
+En cumplimiento del acuerdo de copyright, que permite la distribución del modelo WhisperX, se reproduce dicho acuerdo en su versión original en inglés:
+
+BSD 2-Clause License
+
+Copyright (c) 2024, Max Bain
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+En cumplimiento del acuerdo de copyright del modelo de diarización de Pyannote, se reproduce dicho acuerdo:
+
+MIT License
+
+Copyright (c) 2020 CNRS
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+La presente distribución del software mencionado ha sido creado por Daniel Alejandro Salcedo Pérez a lo largo de los años de 2025 y 2026 para su uso por parte de los alumnos y alumnas de la Clínica Jurídica para la Justicia Social de la EHU.
