@@ -1,10 +1,10 @@
-# 🎙️ Transcriptor Local con Diarización (WhisperX & Pyannote)
+# 🎙️ Transcriptor Local con Alienación y Diarización (WhisperX y Pyannote)
 
 Este script está pensado para ejecutarse en **Windows 11** utilizando Miniconda o Anaconda con un entorno de Python (en este caso, 'whisperx.yaml'). La aplicación abrirá una interfaz gráfica en tu navegador web predeterminado, pero **todo el procesamiento de audio se ejecutará en local** en tu propio ordenador (por eso, pondrá local en la dirección). 
 
 Hay dos modelos de Inteligencia Artificial trabajando en conjunto en este código:
 * [**WhisperX:**](https://github.com/m-bain/whisperx) Para la transcripción del texto.
-* [**Pyannote:**](https://huggingface.co/pyannote/speaker-diarization-3.1) Para la diarización (identificación de los diferentes hablantes).
+* [**Pyannote:**](https://huggingface.co/pyannote/speaker-diarization-3.1) Para la alineación (formateo del texto en frases) y diarización (identificación de los diferentes hablantes).
 
 ---
 
