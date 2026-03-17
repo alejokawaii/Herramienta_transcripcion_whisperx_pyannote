@@ -12,7 +12,7 @@ Hay dos modelos de Inteligencia Artificial trabajando en conjunto en este códig
 
 La única acción que requiere conexión a internet al iniciar el programa es la verificación inicial en Hugging Face y descarga del modelo de diarización. 
 
-**El token de Hugging Face que se incluya en el código no afecta la privacidad de tus audios ni de tus transcripciones.** * Su función es estrictamente de autenticación; actúa como una clave personal para demostrar que eres un usuario registrado que ha aceptado los términos de uso de `pyannote/speaker-diarization`.
+**El token de Hugging Face que se incluya en el código no afecta la privacidad de tus audios ni de tus transcripciones.** Su función es estrictamente de autenticación; actúa como una clave personal para demostrar que eres un usuario registrado que ha aceptado los términos de uso de `pyannote/speaker-diarization`.
 * El token te da permiso para obtener la herramienta, pero **el análisis se realiza íntegramente en el interior de tu ordenador**. Ningún dato de audio, ni la transcripción generada, sale a internet.
 * *(Nota: A futuro, el código en Python puede modificarse para cifrar los datos resultantes si se requiere un mayor nivel de seguridad y privacidad).*
 
